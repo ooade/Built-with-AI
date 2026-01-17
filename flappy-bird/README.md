@@ -1,6 +1,6 @@
 # Flappy Bird
 
-![Flappy Bird](cover.png)
+<img src="cover.png" alt="Flappy Bird" width="400">
 
 A classic Flappy Bird clone built with Phaser 3 and React. Navigate the bird through pipes by tapping or pressing space to flap!
 
