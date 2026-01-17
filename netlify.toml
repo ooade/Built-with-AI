@@ -1,0 +1,30 @@
+# Netlify configuration for Built-with-AI monorepo
+# Each application is deployed as a separate route
+
+[build]
+  # Don't build at root level - use publish directories from each app
+  publish = "public"
+  command = "echo 'Building all apps...' && cd flappy-bird && yarn install && yarn build"
+
+# Flappy Bird app
+[[redirects]]
+  from = "/flappy-bird/*"
+  to = "/flappy-bird/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/flappy-bird"
+  to = "/flappy-bird/index.html"
+  status = 200
+
+# Root redirect to a landing page (optional - you can customize this)
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+# SPA fallback for each app
+[[redirects]]
+  from = "/flappy-bird/*"
+  to = "/flappy-bird/index.html"
+  status = 200
