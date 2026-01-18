@@ -2,13 +2,8 @@
 # Each application is deployed as a separate route
 
 [build]
-  # Don't build at root level - use publish directories from each app
   publish = "public"
-  command = """
-    echo 'Building all apps...' && \
-    cd apps/flappy-bird && yarn install && yarn build && \
-    cd ../snake-on-windows-xp && yarn install && yarn build
-  """
+  command = "echo 'Building...' && npm run build"
 
 # Flappy Bird app
 [[redirects]]
@@ -38,11 +33,11 @@
   to = "/apps/snake-on-windows-xp/index.html"
   status = 200
 
-# SPA fallback for each app
+# SPA fallback for Snake on Windows XP
 [[redirects]]
-from = "/snake-on-windows-xp/*"
-to = "/apps/snake-on-windows-xp/index.html"
-status = 200
+  from = "/snake-on-windows-xp/*"
+  to = "/apps/snake-on-windows-xp/index.html"
+  status = 200
 
 # Root redirect to a landing page
 [[redirects]]
