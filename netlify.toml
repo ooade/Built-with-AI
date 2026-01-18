@@ -6,7 +6,7 @@
   publish = "public"
   command = """
     echo 'Building all apps...' && \
-    cd flappy-bird && yarn install && yarn build && \
+    cd apps/flappy-bird && yarn install && yarn build && \
     cd ../snake-on-windows-xp && yarn install && yarn build
   """
 
