@@ -4,7 +4,11 @@
 [build]
   # Don't build at root level - use publish directories from each app
   publish = "public"
-  command = "echo 'Building all apps...' && cd flappy-bird && yarn install && yarn build"
+  command = """
+    echo 'Building all apps...' && \
+    cd flappy-bird && yarn install && yarn build && \
+    cd ../snake-on-windows-xp && yarn install && yarn build
+  """
 
 # Flappy Bird app
 [[redirects]]
@@ -17,6 +21,17 @@
   to = "/flappy-bird/index.html"
   status = 200
 
+# Snake on Windows XP app
+[[redirects]]
+  from = "/snake-on-windows-xp/*"
+  to = "/snake-on-windows-xp/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/snake-on-windows-xp"
+  to = "/snake-on-windows-xp/index.html"
+  status = 200
+
 # Root redirect to a landing page (optional - you can customize this)
 [[redirects]]
   from = "/"
@@ -27,4 +42,9 @@
 [[redirects]]
   from = "/flappy-bird/*"
   to = "/flappy-bird/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/snake-on-windows-xp/*"
+  to = "/snake-on-windows-xp/index.html"
   status = 200
