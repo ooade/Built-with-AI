@@ -3,7 +3,7 @@
 
 [build]
   publish = "public"
-  command = "echo 'Building...' && npm run build"
+  command = "echo 'Building...' && npm run build && npm run build:projects"
 
 [[redirects]]
   from = "/flappy-bird/*"

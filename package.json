@@ -1,10 +1,24 @@
 {
-	"name": "built-with-ai",
-	"private": true,
-	"version": "1.0.0",
-	"scripts": {
-		"build": "yarn build:flappy-bird && yarn build:snake-on-windows-xp",
-		"build:flappy-bird": "cd apps/flappy-bird && yarn && yarn build",
-		"build:snake-on-windows-xp": "cd apps/snake-on-windows-xp && yarn && yarn build"
-	}
+  "name": "built-with-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:flappy-bird": "cd projects/flappy-bird && yarn && yarn build",
+    "build:snake-on-windows-xp": "cd projects/snake-on-windows-xp && yarn && yarn build",
+    "build:projects": "yarn build:flappy-bird && yarn build:snake-on-windows-xp"
+  },
+  "dependencies": {
+    "react-dom": "^19.2.3",
+    "react": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
 }
