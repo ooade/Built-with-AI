@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: '/flappy-bird/',
 		build: {
-			outDir: '../../public/flappy-bird',
+			outDir: '../../dist/flappy-bird',
 			emptyOutDir: true,
 		},
 		server: {

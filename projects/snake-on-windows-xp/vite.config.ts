@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: '/snake-on-windows-xp/',
 		build: {
-			outDir: '../../public/snake-on-windows-xp',
+			outDir: '../../dist/snake-on-windows-xp',
 			emptyOutDir: true,
 		},
 		server: {

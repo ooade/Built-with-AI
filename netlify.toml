@@ -2,7 +2,7 @@
 # Each application is deployed as a separate route
 
 [build]
-  publish = "public"
+  publish = "dist"
   command = "echo 'Building...' && npm run build && npm run build:projects"
 
 [[redirects]]
