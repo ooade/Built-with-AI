@@ -5,41 +5,17 @@
   publish = "public"
   command = "echo 'Building...' && npm run build"
 
-# Flappy Bird app
 [[redirects]]
   from = "/flappy-bird/*"
-  to = "/apps/flappy-bird/:splat"
+  to = "/flappy-bird/index.html"
   status = 200
 
-[[redirects]]
-  from = "/flappy-bird"
-  to = "/apps/flappy-bird/index.html"
-  status = 200
-
-# SPA fallback for each app
-[[redirects]]
-  from = "/flappy-bird/*"
-  to = "/apps/flappy-bird/index.html"
-  status = 200
-
-# Snake on Windows XP app
 [[redirects]]
   from = "/snake-on-windows-xp/*"
-  to = "/apps/snake-on-windows-xp/:splat"
+  to = "/snake-on-windows-xp/index.html"
   status = 200
 
-[[redirects]]
-  from = "/snake-on-windows-xp"
-  to = "/apps/snake-on-windows-xp/index.html"
-  status = 200
-
-# SPA fallback for Snake on Windows XP
-[[redirects]]
-  from = "/snake-on-windows-xp/*"
-  to = "/apps/snake-on-windows-xp/index.html"
-  status = 200
-
-# Root redirect to a landing page
+# Root fallback
 [[redirects]]
   from = "/"
   to = "/index.html"
