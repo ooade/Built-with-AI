@@ -545,10 +545,10 @@ export default function App() {
 			gameState.winner !== myPlayer;
 
 		return (
-			<div className="flex-1 w-full max-w-5xl mx-auto flex flex-col h-full overflow-hidden relative">
-				{/* Result Overlays - Full Screen Atmosphere */}
+			<>
+				{/* Result Overlays - Fixed to Cover Screen */}
 				{isWinner && (
-					<div className="absolute inset-0 z-0 pointer-events-none animate-in fade-in duration-1000">
+					<div className="fixed inset-0 z-0 pointer-events-none animate-in fade-in duration-1000">
 						{/* Tint */}
 						<div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay" />
 						{/* Gradient */}
@@ -557,7 +557,7 @@ export default function App() {
 				)}
 
 				{isLoser && (
-					<div className="absolute inset-0 z-0 pointer-events-none animate-in fade-in duration-1000">
+					<div className="fixed inset-0 z-0 pointer-events-none animate-in fade-in duration-1000">
 						{/* Tint */}
 						<div className="absolute inset-0 bg-rose-500/10 mix-blend-overlay" />
 						{/* Gradient */}
@@ -565,157 +565,160 @@ export default function App() {
 					</div>
 				)}
 
-				{/* Top: Status / Turn Info */}
-				<div className="px-4 pt-4 shrink-0 flex flex-col items-center justify-center min-h-[90px] relative z-10">
-					{gameState.winner ? (
-						<div className="glass-ios-light px-8 py-3 rounded-full flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-bounce border border-white/20 backdrop-blur-xl">
-							<Crown
-								size={24}
-								className="text-yellow-400"
-								fill="currentColor"
-							/>
-							<span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-amber-500">
-								{gameState.winner === 'DRAW'
-									? 'Draw!'
-									: gameState.winner === myPlayer
-										? 'Victory!'
-										: `${opponentName} Won!`}
-							</span>
-						</div>
-					) : (
-						<div
-							className={`px-6 py-2.5 rounded-full border backdrop-blur-md transition-all duration-300 flex items-center gap-3 ${
-								isMyTurn
-									? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
-									: 'bg-white/5 border-white/10 text-white/50'
-							}`}
-						>
+				{/* Game Container */}
+				<div className="flex-1 w-full max-w-5xl mx-auto flex flex-col h-full overflow-hidden relative z-10">
+					{/* Top: Status / Turn Info */}
+					<div className="px-4 pt-4 shrink-0 flex flex-col items-center justify-center min-h-[90px] relative">
+						{gameState.winner ? (
+							<div className="glass-ios-light px-8 py-3 rounded-full flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-bounce border border-white/20 backdrop-blur-xl">
+								<Crown
+									size={24}
+									className="text-yellow-400"
+									fill="currentColor"
+								/>
+								<span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-amber-500">
+									{gameState.winner === 'DRAW'
+										? 'Draw!'
+										: gameState.winner === myPlayer
+											? 'Victory!'
+											: `${opponentName} Won!`}
+								</span>
+							</div>
+						) : (
 							<div
-								className={`w-2.5 h-2.5 rounded-full ${isMyTurn ? 'bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]' : 'bg-white/20'}`}
-							/>
-							<span className="font-semibold tracking-wide text-sm uppercase">
-								{isMyTurn
-									? gameState.turn === 1
-										? 'You Start'
-										: 'Your Turn'
-									: `${opponentName}'s Turn`}
-							</span>
-						</div>
-					)}
-				</div>
-
-				{/* Center: Board */}
-				<div className="flex-1 flex items-center justify-center p-2 min-h-0 relative z-10">
-					<Board
-						board={gameState.board}
-						onColumnClick={handleLocalMove}
-						currentPlayer={gameState.currentPlayer}
-						myPlayer={myPlayer}
-						winner={gameState.winner}
-						canPlay={isConnected && !gameState.winner && isMyTurn}
-						p1Name={myPlayer === Player.One ? 'You' : opponentName}
-						p2Name={myPlayer === Player.Two ? 'You' : opponentName}
-					/>
-				</div>
-
-				{/* Bottom: Players & Actions */}
-				<div className="shrink-0 pb-safe w-full relative z-10">
-					<div className="glass-ios-heavy rounded-t-[32px] p-6 pb-8 flex flex-col gap-6 shadow-[0_-20px_60px_rgba(0,0,0,0.6)] border-t border-white/10">
-						{/* Players */}
-						<div className="flex justify-between items-center gap-4 px-2">
-							{/* You */}
-							<div
-								className={`flex items-center gap-4 transition-all duration-300 ${isMyTurn ? 'opacity-100 scale-105' : 'opacity-40 scale-100 grayscale'}`}
+								className={`px-6 py-2.5 rounded-full border backdrop-blur-md transition-all duration-300 flex items-center gap-3 ${
+									isMyTurn
+										? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
+										: 'bg-white/5 border-white/10 text-white/50'
+								}`}
 							>
-								<div className="relative">
-									<img
-										src={getAvatar(myName)}
-										className="w-12 h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
-									/>
-									<div
-										className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[#15151a] ${myPlayer === Player.One ? 'bg-rose-500' : 'bg-amber-400'}`}
-									/>
-								</div>
-								<div className="flex flex-col">
-									<span className="text-base font-bold text-white tracking-tight">
-										You
-									</span>
-									<span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">
-										Score {gameState.scores[myPlayer] || 0}
-									</span>
-								</div>
+								<div
+									className={`w-2.5 h-2.5 rounded-full ${isMyTurn ? 'bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]' : 'bg-white/20'}`}
+								/>
+								<span className="font-semibold tracking-wide text-sm uppercase">
+									{isMyTurn
+										? gameState.turn === 1
+											? 'You Start'
+											: 'Your Turn'
+										: `${opponentName}'s Turn`}
+								</span>
 							</div>
+						)}
+					</div>
 
-							{/* VS */}
-							<div className="text-xs font-black text-white/10 italic tracking-widest">
-								VS
-							</div>
+					{/* Center: Board */}
+					<div className="flex-1 flex items-center justify-center p-2 min-h-0 relative">
+						<Board
+							board={gameState.board}
+							onColumnClick={handleLocalMove}
+							currentPlayer={gameState.currentPlayer}
+							myPlayer={myPlayer}
+							winner={gameState.winner}
+							canPlay={isConnected && !gameState.winner && isMyTurn}
+							p1Name={myPlayer === Player.One ? 'You' : opponentName}
+							p2Name={myPlayer === Player.Two ? 'You' : opponentName}
+						/>
+					</div>
 
-							{/* Opponent */}
-							<div
-								className={`flex items-center gap-4 transition-all duration-300 flex-row-reverse text-right ${isWaiting ? 'opacity-100 scale-105' : 'opacity-40 scale-100 grayscale'}`}
-							>
-								<div className="relative">
-									<img
-										src={getAvatar(opponentName)}
-										className="w-12 h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
-									/>
-									<div
-										className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[#15151a] ${myPlayer === Player.Two ? 'bg-rose-500' : 'bg-amber-400'}`}
-									/>
-								</div>
-								<div className="flex flex-col">
-									<span className="text-base font-bold text-white tracking-tight max-w-[100px] truncate">
-										{opponentName}
-									</span>
-									<span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">
-										Score{' '}
-										{gameState.scores[
-											myPlayer === Player.One ? Player.Two : Player.One
-										] || 0}
-									</span>
-								</div>
-							</div>
-						</div>
-
-						{/* Main Action Button */}
-						<div className="flex gap-4 h-[52px]">
-							{gameState.winner ? (
-								<button
-									onClick={handleRestart}
-									className="flex-1 glass-btn-primary bg-blue-500/20 hover:bg-blue-500/30 text-blue-100 border-blue-400/30"
+					{/* Bottom: Players & Actions */}
+					<div className="shrink-0 pb-safe w-full relative">
+						<div className="glass-ios-heavy rounded-t-[32px] p-6 pb-8 flex flex-col gap-6 shadow-[0_-20px_60px_rgba(0,0,0,0.6)] border-t border-white/10">
+							{/* Players */}
+							<div className="flex justify-between items-center gap-4 px-2">
+								{/* You */}
+								<div
+									className={`flex items-center gap-4 transition-all duration-300 ${isMyTurn ? 'opacity-100 scale-105' : 'opacity-40 scale-100 grayscale'}`}
 								>
-									<RotateCcw size={18} /> Play Again
-								</button>
-							) : (
-								<div className="flex-1 flex items-center justify-center text-sm font-semibold text-white/40 italic glass-ios-light rounded-[26px]">
-									{isConnected
-										? isMyTurn
-											? gameState.turn === 1
-												? 'Anyone can start!'
-												: "It's your turn!"
-											: `${opponentName} is thinking...`
-										: 'Waiting for friend...'}
+									<div className="relative">
+										<img
+											src={getAvatar(myName)}
+											className="w-12 h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
+										/>
+										<div
+											className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[#15151a] ${myPlayer === Player.One ? 'bg-rose-500' : 'bg-amber-400'}`}
+										/>
+									</div>
+									<div className="flex flex-col">
+										<span className="text-base font-bold text-white tracking-tight">
+											You
+										</span>
+										<span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">
+											Score {gameState.scores[myPlayer] || 0}
+										</span>
+									</div>
 								</div>
-							)}
 
-							{/* Floating Chat Trigger */}
-							<button
-								onClick={() => {
-									setIsChatOpen(true);
-									if (navigator.vibrate) navigator.vibrate(10);
-								}}
-								className="aspect-square h-full glass-btn-primary rounded-[26px] !w-[52px] !gap-0 relative bg-white/5 hover:bg-white/10"
-							>
-								<MessageSquare size={20} className="text-white/80" />
-								{unreadChat > 0 && (
-									<span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 bg-rose-500 rounded-full animate-pulse ring-2 ring-[#15151a]" />
+								{/* VS */}
+								<div className="text-xs font-black text-white/10 italic tracking-widest">
+									VS
+								</div>
+
+								{/* Opponent */}
+								<div
+									className={`flex items-center gap-4 transition-all duration-300 flex-row-reverse text-right ${isWaiting ? 'opacity-100 scale-105' : 'opacity-40 scale-100 grayscale'}`}
+								>
+									<div className="relative">
+										<img
+											src={getAvatar(opponentName)}
+											className="w-12 h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
+										/>
+										<div
+											className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[#15151a] ${myPlayer === Player.Two ? 'bg-rose-500' : 'bg-amber-400'}`}
+										/>
+									</div>
+									<div className="flex flex-col">
+										<span className="text-base font-bold text-white tracking-tight max-w-[100px] truncate">
+											{opponentName}
+										</span>
+										<span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">
+											Score{' '}
+											{gameState.scores[
+												myPlayer === Player.One ? Player.Two : Player.One
+											] || 0}
+										</span>
+									</div>
+								</div>
+							</div>
+
+							{/* Main Action Button */}
+							<div className="flex gap-4 h-[52px]">
+								{gameState.winner ? (
+									<button
+										onClick={handleRestart}
+										className="flex-1 glass-btn-primary bg-blue-500/20 hover:bg-blue-500/30 text-blue-100 border-blue-400/30"
+									>
+										<RotateCcw size={18} /> Play Again
+									</button>
+								) : (
+									<div className="flex-1 flex items-center justify-center text-sm font-semibold text-white/40 italic glass-ios-light rounded-[26px]">
+										{isConnected
+											? isMyTurn
+												? gameState.turn === 1
+													? 'Anyone can start!'
+													: "It's your turn!"
+												: `${opponentName} is thinking...`
+											: 'Waiting for friend...'}
+									</div>
 								)}
-							</button>
+
+								{/* Floating Chat Trigger */}
+								<button
+									onClick={() => {
+										setIsChatOpen(true);
+										if (navigator.vibrate) navigator.vibrate(10);
+									}}
+									className="aspect-square h-full glass-btn-primary rounded-[26px] !w-[52px] !gap-0 relative bg-white/5 hover:bg-white/10"
+								>
+									<MessageSquare size={20} className="text-white/80" />
+									{unreadChat > 0 && (
+										<span className="absolute top-3.5 right-3.5 w-2.5 h-2.5 bg-rose-500 rounded-full animate-pulse ring-2 ring-[#15151a]" />
+									)}
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</>
 		);
 	};
 
