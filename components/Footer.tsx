@@ -21,12 +21,12 @@ const Footer: React.FC = () => {
 						My boring personal website
 					</a>
 					<a
-						href={SOCIAL_LINKS.TWITTER}
+						href={SOCIAL_LINKS.X}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="hover:text-white transition-colors"
 					>
-						Twitter
+						X
 					</a>
 					<a
 						href={SOCIAL_LINKS.GITHUB}
@@ -35,6 +35,14 @@ const Footer: React.FC = () => {
 						className="hover:text-white transition-colors"
 					>
 						GitHub
+					</a>
+					<a
+						href={SOCIAL_LINKS.LINKEDIN}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="hover:text-white transition-colors"
+					>
+						LinkedIn
 					</a>
 				</div>
 			</div>

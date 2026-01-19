@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="P2P Connect Four - Experience real-time multiplayer gaming powered by WebRTC and peer-to-peer technology"
+		/>
+		<meta
+			name="keywords"
+			content="Connect Four, P2P, WebRTC, multiplayer, peer-to-peer, real-time game, serverless"
+		/>
+		<meta name="author" content="Ademola Adegbuyi" />
+		<meta name="theme-color" content="#1e293b" />
+
+		<!-- Open Graph Tags -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="P2P Connect Four - Play Multiplayer" />
+		<meta
+			property="og:description"
+			content="P2P Connect Four - Experience real-time multiplayer gaming powered by WebRTC and peer-to-peer technology"
+		/>
+		<meta
+			property="og:url"
+			content="https://with-ai.adegbuyi.me/connect-four/"
+		/>
+		<meta
+			property="og:image"
+			content="https://with-ai.adegbuyi.me/og-image-connect-four.png"
+		/>
+		<meta property="og:image:alt" content="P2P Connect Four Game" />
+
+		<!-- Twitter Card Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="P2P Connect Four" />
+		<meta
+			name="twitter:description"
+			content="P2P Connect Four - Real-time multiplayer powered by WebRTC and peer-to-peer technology."
+		/>
+		<meta
+			name="twitter:image"
+			content="https://with-ai.adegbuyi.me/og-image-connect-four.png"
+		/>
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href="https://with-ai.adegbuyi.me/connect-four/" />
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "P2P Connect Four",
+				"description": "Peer-to-peer Connect Four game using WebRTC for real-time multiplayer",
+				"applicationCategory": "Game",
+				"author": {
+					"@type": "Person",
+					"name": "Ademola Adegbuyi"
+				},
+				"url": "https://with-ai.adegbuyi.me/connect-four/",
+				"image": "https://with-ai.adegbuyi.me/og-image-connect-four.png",
+				"featureList": [
+					"Peer-to-peer gameplay",
+					"WebRTC technology",
+					"Real-time multiplayer",
+					"No server required"
+				]
+			}
+		</script>
+
+		<title>P2P Connect Four - Real-Time Multiplayer Game</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+		<style>
+			/* Prevent pull-to-refresh on mobile */
+			body {
+				overscroll-behavior-y: contain;
+			}
+
+			/* SF Pro Font Stack simulation */
+			body {
+				font-family:
+					-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+					'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			/* Rich Animated Background */
+			.bg-ios-gradient {
+				background:
+					radial-gradient(
+						120% 120% at 50% 10%,
+						rgba(56, 189, 248, 0.15) 0%,
+						transparent 60%
+					),
+					radial-gradient(
+						100% 100% at 100% 0%,
+						rgba(232, 121, 249, 0.12) 0%,
+						transparent 50%
+					),
+					radial-gradient(
+						100% 100% at 0% 100%,
+						rgba(99, 102, 241, 0.12) 0%,
+						transparent 50%
+					),
+					radial-gradient(
+						100% 60% at 50% 50%,
+						rgba(255, 255, 255, 0.03) 0%,
+						transparent 100%
+					),
+					#000000;
+				background-attachment: fixed;
+			}
+
+			/* iOS Glassmorphism Specification 2.0 */
+
+			/* Base Glass Material (Cards) */
+			.glass-ios {
+				background: rgba(35, 35, 40, 0.65);
+				backdrop-filter: blur(50px) saturate(180%);
+				-webkit-backdrop-filter: blur(50px) saturate(180%);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+			}
+
+			/* Heavy Material (Bottom Sheets, Nav) */
+			.glass-ios-heavy {
+				background: rgba(22, 22, 28, 0.85);
+				backdrop-filter: blur(60px) saturate(200%);
+				-webkit-backdrop-filter: blur(60px) saturate(200%);
+				border-top: 1px solid rgba(255, 255, 255, 0.15);
+				box-shadow: 0 -10px 60px rgba(0, 0, 0, 0.6);
+			}
+
+			/* Light Material (Overlays, Toasts) */
+			.glass-ios-light {
+				background: rgba(60, 60, 70, 0.4);
+				backdrop-filter: blur(30px) saturate(160%);
+				-webkit-backdrop-filter: blur(30px) saturate(160%);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+			}
+
+			/* Input Fields - iOS Search Bar Style */
+			.glass-input {
+				height: 48px;
+				background: rgba(0, 0, 0, 0.3);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 14px;
+				color: rgba(255, 255, 255, 0.95);
+				font-size: 17px;
+				transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+			}
+
+			.glass-input:focus {
+				background: rgba(0, 0, 0, 0.45);
+				border-color: rgba(64, 160, 255, 0.6);
+				box-shadow: 0 0 0 3px rgba(64, 160, 255, 0.15);
+				outline: none;
+			}
+
+			.glass-input::placeholder {
+				color: rgba(235, 235, 245, 0.3);
+			}
+
+			/* Primary Buttons */
+			.glass-btn-primary {
+				height: 50px;
+				background: rgba(255, 255, 255, 0.15);
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				border: 1px solid rgba(255, 255, 255, 0.25);
+				border-radius: 25px;
+				color: white;
+				font-weight: 600;
+				font-size: 17px;
+				letter-spacing: -0.01em;
+				transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.glass-btn-primary:after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: linear-gradient(
+					to bottom,
+					rgba(255, 255, 255, 0.1),
+					transparent
+				);
+				opacity: 0.5;
+				pointer-events: none;
+			}
+
+			.glass-btn-primary:active:not(:disabled) {
+				transform: scale(0.96);
+				background: rgba(255, 255, 255, 0.2);
+			}
+
+			.glass-btn-primary:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+				box-shadow: none;
+			}
+
+			/* Animations */
+			@keyframes drop {
+				0% {
+					transform: translateY(-600%);
+					opacity: 0;
+				}
+
+				60% {
+					transform: translateY(0);
+					opacity: 1;
+				}
+
+				80% {
+					transform: translateY(-10px);
+				}
+
+				100% {
+					transform: translateY(0);
+				}
+			}
+
+			.animate-drop {
+				animation: drop 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+			}
+
+			@keyframes win-pulse {
+				0%,
+				100% {
+					transform: scale(1);
+					filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+				}
+
+				50% {
+					transform: scale(1.05);
+					filter: brightness(1.4) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+				}
+			}
+
+			.animate-win {
+				animation: win-pulse 2s ease-in-out infinite;
+				z-index: 10;
+			}
+
+			/* Utilities */
+			input {
+				appearance: none;
+				-webkit-appearance: none;
+				border-radius: 0;
+			}
+
+			.no-scrollbar::-webkit-scrollbar {
+				display: none;
+			}
+
+			.no-scrollbar {
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			/* Safe Area */
+			.pb-safe {
+				padding-bottom: env(safe-area-inset-bottom);
+			}
+
+			.pt-safe {
+				padding-top: env(safe-area-inset-top);
+			}
+		</style>
+		<script type="importmap">
+			{
+				"imports": {
+					"react": "https://esm.sh/react@^19.2.3",
+					"react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+					"react/": "https://esm.sh/react@^19.2.3/",
+					"clsx": "https://esm.sh/clsx@^2.1.1",
+					"lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+					"canvas-confetti": "https://esm.sh/canvas-confetti@1.9.2"
+				}
+			}
+		</script>
+		<link rel="stylesheet" href="/index.css" />
+	</head>
+
+	<body
+		class="bg-ios-gradient text-white antialiased h-[100dvh] w-screen overflow-hidden flex flex-col select-none"
+	>
+		<div id="root" class="flex-1 h-full w-full"></div>
+		<script type="module" src="/index.tsx"></script>
+	</body>
+</html>

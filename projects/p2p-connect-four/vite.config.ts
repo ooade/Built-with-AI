@@ -4,9 +4,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(() => {
 	return {
-		base: '/snake-on-windows-xp/',
+		base: '/p2p-connect-four/',
 		build: {
-			outDir: '../../dist/snake-on-windows-xp',
+			outDir: '../../dist/p2p-connect-four',
 			emptyOutDir: true,
 		},
 		server: {

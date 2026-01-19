@@ -1,0 +1,29 @@
+# Robots.txt for Built-with-AI
+# Allow search engines to crawl all content
+
+User-agent: *
+Allow: /
+Allow: /flappy-bird/
+Allow: /snake-on-windows-xp/
+Allow: /connect-four/
+Allow: /p2p-connect-four/
+
+# Disallow specific paths (if any)
+Disallow: /private/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://with-ai.adegbuyi.me/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
+
+# User-agent specific rules for aggressive crawlers (optional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

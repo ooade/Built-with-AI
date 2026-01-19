@@ -17,10 +17,19 @@ export const PROJECTS: Project[] = [
 		tags: ['Game', 'Retro'],
 		link: '/snake-on-windows-xp/',
 	},
+	{
+		id: 'p2p-connect-four',
+		title: 'P2P Connect Four',
+		description:
+			'A peer-to-peer Connect Four game that allows two players to compete in real-time without a central server.',
+		tags: ['Game', 'P2P'],
+		link: '/connect-four/',
+	},
 ];
 
 export const SOCIAL_LINKS = {
+	X: 'https://x.com/_ooade',
 	PERSONAL_SITE: 'https://ademola.adegbuyi.me',
-	TWITTER: '#',
 	GITHUB: 'https://github.com/ooade/Built-with-AI',
+	LINKEDIN: 'https://www.linkedin.com/in/ooade/',
 };

@@ -1,0 +1,5 @@
+{
+  "name": "P2P Connect Four",
+  "description": "A peer-to-peer, serverless Four-in-a-Row game using WebRTC for real-time multiplayer.",
+  "requestFramePermissions": []
+}

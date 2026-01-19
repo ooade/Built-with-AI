@@ -15,6 +15,11 @@
   to = "/snake-on-windows-xp/index.html"
   status = 200
 
+[[redirects]]
+  from = "/connect-four/*"
+  to = "/p2p-connect-four/index.html"
+  status = 200
+
 # Root fallback
 [[redirects]]
   from = "/"
