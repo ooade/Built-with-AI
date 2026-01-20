@@ -214,6 +214,25 @@
 				box-shadow: none;
 			}
 
+			/* Custom Scrollbars - Thin & Minimal */
+			::-webkit-scrollbar {
+				width: 6px;
+				height: 6px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: transparent;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: rgba(255, 255, 255, 0.2);
+				border-radius: 3px;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: rgba(255, 255, 255, 0.3);
+			}
+
 			/* Animations */
 			@keyframes drop {
 				0% {
@@ -294,11 +313,10 @@
 				}
 			}
 		</script>
-		<link rel="stylesheet" href="/index.css" />
 	</head>
 
 	<body
-		class="bg-ios-gradient text-white antialiased h-[100dvh] w-screen overflow-hidden flex flex-col select-none"
+		class="bg-ios-gradient text-white antialiased h-[100dvh] w-full overflow-hidden flex flex-col select-none"
 	>
 		<div id="root" class="flex-1 h-full w-full"></div>
 		<script type="module" src="/index.tsx"></script>

@@ -93,6 +93,9 @@ export default function App() {
 	const [joinCodeInput, setJoinCodeInput] = useState('');
 	const [isCopied, setIsCopied] = useState(false);
 	const [isEditingName, setIsEditingName] = useState(false);
+
+	// Chat State (Mobile Toggle)
+	// On desktop, chat is always visible inline. On mobile, this toggles the bottom sheet view.
 	const [isChatOpen, setIsChatOpen] = useState(false);
 	const [chatMessages, setChatMessages] = useState<
 		Array<{ text: string; isMe: boolean }>
@@ -328,9 +331,10 @@ export default function App() {
 	// --- Renders ---
 
 	const renderStatus = () => {
+		// Subtle error colors
 		if (isReconnecting)
 			return (
-				<span className="text-amber-400 flex items-center gap-1.5">
+				<span className="text-amber-200/60 flex items-center gap-1.5">
 					<WifiOff size={14} />{' '}
 					<span className="hidden sm:inline text-xs font-semibold uppercase tracking-wider">
 						Weak Signal
@@ -339,7 +343,7 @@ export default function App() {
 			);
 		if (!isConnected && view === 'GAME')
 			return (
-				<span className="text-rose-400 flex items-center gap-1.5">
+				<span className="text-rose-200/60 flex items-center gap-1.5">
 					<WifiOff size={14} />{' '}
 					<span className="hidden sm:inline text-xs font-semibold uppercase tracking-wider">
 						Disconnected
@@ -532,13 +536,11 @@ export default function App() {
 
 	// GAME VIEW
 	const renderGame = () => {
-		// UI Helpers for Dynamic Turn State
+		// UI Helpers
 		const isMyTurn =
 			gameState.currentPlayer === myPlayer ||
 			(gameState.turn === 1 && gameState.currentPlayer === Player.None);
 		const isWaiting = !isMyTurn;
-
-		// Win/Loss States
 		const isWinner = gameState.winner === myPlayer;
 		const isLoser =
 			gameState.winner &&
@@ -550,18 +552,19 @@ export default function App() {
 				const isWin = gameState.winner === myPlayer;
 				const isDraw = gameState.winner === 'DRAW';
 				return (
-					<div className="glass-ios-light px-8 py-3 rounded-full flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-in zoom-in fade-in duration-300 border border-white/20 backdrop-blur-xl">
+					<div className="glass-ios-light px-6 py-2.5 sm:px-8 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-in zoom-in fade-in duration-300 border border-white/20 backdrop-blur-xl max-w-full">
 						{isWin && (
 							<Crown
-								size={24}
-								className="text-yellow-400"
+								size={20}
+								className="text-yellow-400 shrink-0"
 								fill="currentColor"
 							/>
 						)}
-						{!isWin && !isDraw && <Frown size={24} className="text-rose-400" />}
-
+						{!isWin && !isDraw && (
+							<Frown size={20} className="text-rose-400 shrink-0" />
+						)}
 						<span
-							className={`text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r ${
+							className={`text-base sm:text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r whitespace-nowrap ${
 								isWin
 									? 'from-yellow-200 to-amber-500'
 									: isDraw
@@ -576,16 +579,16 @@ export default function App() {
 			}
 			return (
 				<div
-					className={`px-6 py-2.5 rounded-full border backdrop-blur-md transition-all duration-300 flex items-center gap-3 ${
+					className={`px-4 py-2 sm:px-6 sm:py-2.5 rounded-full border backdrop-blur-md transition-all duration-300 flex items-center gap-2 sm:gap-3 ${
 						isMyTurn
 							? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
 							: 'bg-white/5 border-white/10 text-white/50'
 					}`}
 				>
 					<div
-						className={`w-2.5 h-2.5 rounded-full ${isMyTurn ? 'bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]' : 'bg-white/20'}`}
+						className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full shrink-0 ${isMyTurn ? 'bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]' : 'bg-white/20'}`}
 					/>
-					<span className="font-semibold tracking-wide text-sm uppercase">
+					<span className="font-semibold tracking-wide text-xs sm:text-sm uppercase whitespace-nowrap">
 						{isMyTurn
 							? gameState.turn === 1
 								? 'You Start'
@@ -599,53 +602,53 @@ export default function App() {
 		const ControlPanelContent = () => (
 			<>
 				{/* Players */}
-				<div className="flex justify-between items-center gap-4 px-2">
+				<div className="flex justify-between items-center gap-2 sm:gap-4 px-2">
 					{/* You */}
 					<div
-						className={`flex items-center gap-4 transition-all duration-300 ${isMyTurn ? 'opacity-100 scale-105' : 'opacity-40 scale-100 grayscale'}`}
+						className={`flex items-center gap-3 transition-all duration-300 ${isMyTurn ? 'opacity-100' : 'opacity-40 grayscale'}`}
 					>
-						<div className="relative">
+						<div className="relative shrink-0">
 							<img
 								src={getAvatar(myName)}
-								className="w-12 h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
+								className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
 							/>
 							<div
-								className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[#15151a] ${myPlayer === Player.One ? 'bg-rose-500' : 'bg-amber-400'}`}
+								className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-[2px] border-[#15151a] ${myPlayer === Player.One ? 'bg-rose-500' : 'bg-amber-400'}`}
 							/>
 						</div>
-						<div className="flex flex-col">
-							<span className="text-base font-bold text-white tracking-tight">
+						<div className="flex flex-col min-w-0">
+							<span className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
 								You
 							</span>
-							<span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">
+							<span className="text-[9px] sm:text-[10px] font-bold text-white/50 uppercase tracking-widest whitespace-nowrap">
 								Score {gameState.scores[myPlayer] || 0}
 							</span>
 						</div>
 					</div>
 
 					{/* VS */}
-					<div className="text-xs font-black text-white/10 italic tracking-widest">
+					<div className="text-[10px] sm:text-xs font-black text-white/10 italic tracking-widest">
 						VS
 					</div>
 
 					{/* Opponent */}
 					<div
-						className={`flex items-center gap-4 transition-all duration-300 flex-row-reverse text-right ${isWaiting ? 'opacity-100 scale-105' : 'opacity-40 scale-100 grayscale'}`}
+						className={`flex items-center gap-3 transition-all duration-300 flex-row-reverse text-right ${isWaiting ? 'opacity-100' : 'opacity-40 grayscale'}`}
 					>
-						<div className="relative">
+						<div className="relative shrink-0">
 							<img
 								src={getAvatar(opponentName)}
-								className="w-12 h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
+								className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/5 ring-1 ring-white/20 shadow-lg"
 							/>
 							<div
-								className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-[3px] border-[#15151a] ${myPlayer === Player.Two ? 'bg-rose-500' : 'bg-amber-400'}`}
+								className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-[2px] border-[#15151a] ${myPlayer === Player.Two ? 'bg-rose-500' : 'bg-amber-400'}`}
 							/>
 						</div>
-						<div className="flex flex-col">
-							<span className="text-base font-bold text-white tracking-tight max-w-[100px] truncate">
+						<div className="flex flex-col min-w-0">
+							<span className="text-sm sm:text-base font-bold text-white tracking-tight max-w-[80px] sm:max-w-[100px] truncate">
 								{opponentName}
 							</span>
-							<span className="text-[10px] font-bold text-white/50 uppercase tracking-widest">
+							<span className="text-[9px] sm:text-[10px] font-bold text-white/50 uppercase tracking-widest whitespace-nowrap">
 								Score{' '}
 								{gameState.scores[
 									myPlayer === Player.One ? Player.Two : Player.One
@@ -656,16 +659,16 @@ export default function App() {
 				</div>
 
 				{/* Main Action Button */}
-				<div className="flex gap-4 h-[52px]">
+				<div className="flex gap-3 sm:gap-4 h-[48px] sm:h-[52px]">
 					{gameState.winner ? (
 						<button
 							onClick={handleRestart}
-							className="flex-1 glass-btn-primary bg-blue-500/20 hover:bg-blue-500/30 text-blue-100 border-blue-400/30"
+							className="flex-1 glass-btn-primary bg-blue-500/20 hover:bg-blue-500/30 text-blue-100 border-blue-400/30 text-sm sm:text-base"
 						>
 							<RotateCcw size={18} /> Play Again
 						</button>
 					) : (
-						<div className="flex-1 flex items-center justify-center text-sm font-semibold text-white/40 italic glass-ios-light rounded-[26px]">
+						<div className="flex-1 flex items-center justify-center text-xs sm:text-sm font-semibold text-white/40 italic glass-ios-light rounded-[24px] sm:rounded-[26px]">
 							{isConnected
 								? isMyTurn
 									? gameState.turn === 1
@@ -676,13 +679,14 @@ export default function App() {
 						</div>
 					)}
 
-					{/* Floating Chat Trigger */}
+					{/* Floating Chat Trigger - Hidden on Desktop (Inline Chat), Visible on Mobile */}
 					<button
 						onClick={() => {
 							setIsChatOpen(true);
+							setUnreadChat(0);
 							if (navigator.vibrate) navigator.vibrate(10);
 						}}
-						className="aspect-square h-full glass-btn-primary rounded-[26px] !w-[52px] !gap-0 relative bg-white/5 hover:bg-white/10"
+						className="lg:hidden aspect-square h-full glass-btn-primary rounded-[24px] sm:rounded-[26px] !w-[48px] sm:!w-[52px] !gap-0 relative bg-white/5 hover:bg-white/10"
 					>
 						<MessageSquare size={20} className="text-white/80" />
 						{unreadChat > 0 && (
@@ -698,32 +702,29 @@ export default function App() {
 				{/* Result Overlays - Fixed to Cover Screen */}
 				{isWinner && (
 					<div className="fixed inset-0 z-0 pointer-events-none animate-in fade-in duration-1000">
-						{/* Tint */}
 						<div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay" />
-						{/* Gradient */}
 						<div className="absolute inset-0 bg-gradient-to-t from-emerald-900/40 via-transparent to-transparent" />
 					</div>
 				)}
 
 				{isLoser && (
 					<div className="fixed inset-0 z-0 pointer-events-none animate-in fade-in duration-1000">
-						{/* Tint */}
 						<div className="absolute inset-0 bg-rose-500/10 mix-blend-overlay" />
-						{/* Gradient */}
 						<div className="absolute inset-0 bg-gradient-to-t from-rose-900/40 via-transparent to-transparent" />
 					</div>
 				)}
 
-				{/* Game Layout - Flex Row on Large Screens */}
-				<div className="flex-1 w-full max-w-7xl mx-auto flex flex-col lg:flex-row h-full overflow-hidden relative z-10">
-					{/* BOARD SECTION */}
-					<div className="flex-1 flex flex-col items-center justify-center p-2 min-h-0 relative order-2 lg:order-1">
-						{/* Mobile Status Header (Hidden on LG) */}
-						<div className="lg:hidden px-4 pt-4 pb-2 shrink-0 flex flex-col items-center justify-center min-h-[80px] relative z-20">
+				{/* Main Game Container - Mobile First Flex Col, Desktop Flex Row */}
+				<div className="flex-1 w-full h-full flex flex-col lg:flex-row overflow-hidden relative z-10">
+					{/* Left/Top: Game Board Area */}
+					<div className="flex-1 min-w-0 min-h-0 flex flex-col relative order-1">
+						{/* Header Area (Status) */}
+						<div className="shrink-0 h-16 sm:h-20 flex items-center justify-center relative z-20">
 							<StatusBadge />
 						</div>
 
-						<div className="flex-1 flex items-center justify-center w-full max-h-full">
+						{/* Board Container */}
+						<div className="flex-1 flex items-center justify-center p-4 sm:p-6 min-h-0">
 							<Board
 								board={gameState.board}
 								onColumnClick={handleLocalMove}
@@ -737,26 +738,54 @@ export default function App() {
 						</div>
 					</div>
 
-					{/* SIDEBAR / BOTTOM SHEET */}
+					{/* Right/Bottom: Controls & Chat */}
 					<div
-						className="shrink-0 relative z-20 order-3 lg:order-2
-                w-full lg:w-[380px]
-                pointer-events-none lg:pointer-events-auto
-                flex flex-col justify-end lg:justify-stretch
+						className="shrink-0 relative z-20 order-2
+                w-full lg:w-96
+                lg:h-full lg:border-l lg:border-white/10 lg:glass-ios-heavy lg:backdrop-blur-3xl lg:bg-black/40
+                pointer-events-auto
             "
 					>
-						{/* Mobile Bottom Sheet (Hidden on LG) */}
-						<div className="lg:hidden pointer-events-auto glass-ios-heavy rounded-t-[32px] p-6 pb-8 flex flex-col gap-6 shadow-[0_-20px_60px_rgba(0,0,0,0.6)] border-t border-white/10">
-							<ControlPanelContent />
+						{/* Mobile: Bottom Sheet Style */}
+						<div className="lg:hidden w-full glass-ios-heavy rounded-t-[32px] p-5 pb-safe pt-6 flex flex-col gap-5 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-white/10">
+							{isChatOpen ? (
+								<div className="h-[300px] flex flex-col animate-in slide-in-from-right duration-300">
+									<Chat
+										messages={chatMessages}
+										onSendMessage={sendChat}
+										opponentName={opponentName}
+										onBack={() => setIsChatOpen(false)}
+										className="flex-1 h-full"
+									/>
+								</div>
+							) : (
+								<ControlPanelContent />
+							)}
 						</div>
 
-						{/* Desktop Sidebar (Visible on LG) */}
-						<div className="hidden lg:flex flex-col h-full glass-ios-heavy border-l border-white/10 p-8 gap-8 shadow-2xl overflow-y-auto justify-center pointer-events-auto backdrop-blur-3xl bg-black/40">
-							<div className="flex justify-center mb-4">
-								<StatusBadge />
-							</div>
-							<div className="flex flex-col gap-6 w-full">
+						{/* Desktop: Sidebar Style */}
+						<div className="hidden lg:flex flex-col h-full p-6 gap-6">
+							{/* Controls Panel */}
+							<div className="shrink-0 p-5 rounded-[24px] bg-white/5 border border-white/5 flex flex-col gap-6">
 								<ControlPanelContent />
+							</div>
+
+							{/* Inline Chat Panel */}
+							<div className="flex-1 min-h-0 flex flex-col">
+								<Chat
+									messages={chatMessages}
+									onSendMessage={sendChat}
+									opponentName={opponentName}
+									className="h-full flex-1"
+								/>
+							</div>
+
+							{/* Extra Desktop Decoration */}
+							<div className="shrink-0 text-center text-white/20 text-xs font-medium">
+								<p>
+									Game Code:{' '}
+									<span className="font-mono text-white/40">{peerId}</span>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -768,16 +797,16 @@ export default function App() {
 	return (
 		<div className="h-full flex flex-col relative font-sf">
 			{/* Minimal Header */}
-			<header className="absolute top-0 left-0 right-0 h-safe-top z-10 flex justify-between items-start p-4 pt-safe pointer-events-none">
+			<header className="absolute top-0 left-0 right-0 h-safe-top z-30 flex justify-between items-start p-4 pt-safe pointer-events-none">
 				{view === 'GAME' && (
-					<div className="pointer-events-auto glass-ios-light px-4 py-2 rounded-full flex items-center gap-2">
-						<Gamepad2 className="text-white/80 w-4 h-4" />
-						<span className="font-bold text-sm tracking-tight text-white/90">
+					<div className="pointer-events-auto glass-ios-light px-3 py-1.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2">
+						<Gamepad2 className="text-white/80 w-3.5 h-3.5 sm:w-4 sm:h-4" />
+						<span className="font-bold text-xs sm:text-sm tracking-tight text-white/90">
 							Connect<span className="text-blue-400">4</span>
 						</span>
 					</div>
 				)}
-				<div className="ml-auto pointer-events-auto glass-ios-light px-4 py-2 rounded-full flex items-center gap-2">
+				<div className="ml-auto pointer-events-auto glass-ios-light px-3 py-1.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-2">
 					{renderStatus()}
 				</div>
 			</header>
@@ -786,18 +815,6 @@ export default function App() {
 			<main className="flex-1 w-full pt-safe flex flex-col overflow-hidden">
 				{view === 'LOBBY' ? renderLobby() : renderGame()}
 			</main>
-
-			{/* Chat Sheet Overlay */}
-			<Chat
-				isOpen={isChatOpen}
-				onClose={() => {
-					setIsChatOpen(false);
-					setUnreadChat(0);
-				}}
-				messages={chatMessages}
-				onSendMessage={sendChat}
-				opponentName={opponentName}
-			/>
 		</div>
 	);
 }
