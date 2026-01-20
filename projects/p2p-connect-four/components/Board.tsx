@@ -126,11 +126,12 @@ const Board: React.FC<BoardProps> = ({
 							onMouseEnter={() => setHoverCol(col)}
 						>
 							{board.map((row, r) => (
-								// Use vmin for better responsive scaling on both portrait mobile and landscape tablets
-								// w-[13vmin] ensures the board fits height-wise on landscape
+								// Adjusted sizing:
+								// Base: 11.5vmin (Fits iPad Portrait width 768px, 11.5%*768*7 ~ 620px + gaps)
+								// LG: 10vmin (Fits iPad Landscape width when Sidebar is present. 10%*768*7 ~ 540px)
 								<div
 									key={`${r}-${col}`}
-									className="w-[13vmin] h-[13vmin] max-w-[50px] max-h-[50px] sm:max-w-[64px] sm:max-h-[64px] relative"
+									className="w-[11.5vmin] h-[11.5vmin] max-w-[50px] max-h-[50px] sm:max-w-[64px] sm:max-h-[64px] lg:w-[10vmin] lg:h-[10vmin] relative"
 								>
 									{/* Hole Background */}
 									<div className="absolute inset-0 rounded-full bg-black/25 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border border-white/5"></div>
