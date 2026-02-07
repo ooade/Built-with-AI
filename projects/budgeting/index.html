@@ -1,112 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BudgetMaster</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Manrope', 'sans-serif'],
-            },
-            colors: {
-              gray: {
-                25: '#FCFCFD',
-                50: '#F9FAFB',
-                100: '#F2F4F7',
-                200: '#EAECF0',
-                300: '#D0D5DD',
-                400: '#98A2B3',
-                500: '#667085',
-                600: '#475467',
-                700: '#344054',
-                800: '#1D2939',
-                900: '#101828',
-                950: '#0C111D',
-              },
-              primary: {
-                25: '#F6FEF9',
-                50: '#ECFDF3',
-                100: '#D1FADF',
-                200: '#A6F4C5',
-                300: '#6CE9A6',
-                400: '#32D583',
-                500: '#12B76A',
-                600: '#039855',
-                700: '#027A48',
-                800: '#05603A',
-                900: '#054F31',
-                950: '#022C1B',
-              }
-            },
-            boxShadow: {
-              'xs': '0 1px 2px rgba(16, 24, 40, 0.05)',
-              'sm': '0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06)',
-              'md': '0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06)',
-              'lg': '0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)',
-              'xl': '0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03)',
-              '2xl': '0 24px 48px -12px rgba(16, 24, 40, 0.18)',
-              'glow': '0 0 20px rgba(18, 183, 106, 0.3)',
-              'glow-sm': '0 0 10px rgba(18, 183, 106, 0.15)',
-            },
-            animation: {
-              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="BudgetMaster - A comprehensive, offline-first budget tracking application with PDF import simulation, robust data visualization, and expense management. Track your finances with ease." />
+  <meta name="keywords"
+    content="budget, budgeting, expense tracker, finance, money management, PDF import, data visualization, offline-first" />
+  <meta name="author" content="Ademola Adegbuyi" />
+  <meta name="theme-color" content="#12B76A" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BudgetMaster - Comprehensive Budget Tracking App" />
+  <meta property="og:description"
+    content="BudgetMaster - A comprehensive, offline-first budget tracking application with PDF import simulation, robust data visualization, and expense management. Track your finances with ease." />
+  <meta property="og:url" content="https://with-ai.adegbuyi.me/budgeting/" />
+  <meta property="og:image" content="https://with-ai.adegbuyi.me/og-image-budgeting.png" />
+  <meta property="og:image:alt" content="BudgetMaster Application" />
+  <meta property="og:site_name" content="Built with AI" />
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BudgetMaster - Comprehensive Budget Tracking" />
+  <meta name="twitter:description"
+    content="A comprehensive, offline-first budget tracking application with PDF import and data visualization." />
+  <meta name="twitter:image" content="https://with-ai.adegbuyi.me/og-image-budgeting.png" />
+  <meta name="twitter:creator" content="@_ooade" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://with-ai.adegbuyi.me/budgeting/" />
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='60' fill='%2312B76A'>💰</text></svg>" />
+  <meta name="application-name" content="BudgetMaster" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "BudgetMaster",
+        "description": "A comprehensive, offline-first budget tracking application with PDF import simulation, robust data visualization, and expense management.",
+        "url": "https://with-ai.adegbuyi.me/budgeting/",
+        "author": {
+          "@type": "Person",
+          "name": "Ademola Adegbuyi",
+          "url": "https://ademola.adegbuyi.me"
         },
-        darkMode: 'class',
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Offline-first budget tracking",
+          "PDF import simulation",
+          "Data visualization",
+          "Expense management",
+          "Real-time collaboration",
+          "Export capabilities"
+        ]
       }
     </script>
-    <style>
-      html {
-        color-scheme: light;
-      }
-      body {
-        font-family: 'Manrope', sans-serif;
-        background-color: #F9FAFB;
-      }
-      
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #D0D5DD;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #98A2B3;
-      }
-      
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-      .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-      }
-      
-      /* Smooth transitions for all interactive elements */
-      button, a, input, select {
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 200ms;
-      }
-    </style>
+
+  <title>BudgetMaster - Comprehensive Budget Tracking App</title>
+
+  <!-- Performance optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://esm.sh" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            gray: {
+              25: '#FCFCFD',
+              50: '#F9FAFB',
+              100: '#F2F4F7',
+              200: '#EAECF0',
+              300: '#D0D5DD',
+              400: '#98A2B3',
+              500: '#667085',
+              600: '#475467',
+              700: '#344054',
+              800: '#1D2939',
+              900: '#101828',
+              950: '#0C111D',
+            },
+            primary: {
+              25: '#F6FEF9',
+              50: '#ECFDF3',
+              100: '#D1FADF',
+              200: '#A6F4C5',
+              300: '#6CE9A6',
+              400: '#32D583',
+              500: '#12B76A',
+              600: '#039855',
+              700: '#027A48',
+              800: '#05603A',
+              900: '#054F31',
+              950: '#022C1B',
+            }
+          },
+          boxShadow: {
+            'xs': '0 1px 2px rgba(16, 24, 40, 0.05)',
+            'sm': '0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06)',
+            'md': '0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06)',
+            'lg': '0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)',
+            'xl': '0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03)',
+            '2xl': '0 24px 48px -12px rgba(16, 24, 40, 0.18)',
+            'glow': '0 0 20px rgba(18, 183, 106, 0.3)',
+            'glow-sm': '0 0 10px rgba(18, 183, 106, 0.15)',
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        },
+      },
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    html {
+      color-scheme: light;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #F9FAFB;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #D0D5DD;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #98A2B3;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Smooth transitions for all interactive elements */
+    button,
+    a,
+    input,
+    select {
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 200ms;
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -127,10 +208,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-primary-100 selection:text-primary-900">
-    <div id="root"></div>
+
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-primary-100 selection:text-primary-900">
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>

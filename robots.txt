@@ -7,6 +7,7 @@ Allow: /flappy-bird/
 Allow: /snake-on-windows-xp/
 Allow: /connect-four/
 Allow: /p2p-connect-four/
+Allow: /budgeting/
 
 # Disallow specific paths (if any)
 Disallow: /private/

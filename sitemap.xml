@@ -6,7 +6,7 @@
   <!-- Home Page -->
   <url>
     <loc>https://with-ai.adegbuyi.me/</loc>
-    <lastmod>2026-01-19</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,7 +14,7 @@
   <!-- Flappy Bird Project -->
   <url>
     <loc>https://with-ai.adegbuyi.me/flappy-bird/</loc>
-    <lastmod>2026-01-19</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -26,7 +26,7 @@
   <!-- Snake on Windows XP Project -->
   <url>
     <loc>https://with-ai.adegbuyi.me/snake-on-windows-xp/</loc>
-    <lastmod>2026-01-19</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -38,12 +38,24 @@
   <!-- Connect Four Project (also accessible as /p2p-connect-four/) -->
   <url>
     <loc>https://with-ai.adegbuyi.me/connect-four/</loc>
-    <lastmod>2026-01-19</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://with-ai.adegbuyi.me/og-image-connect-four.png</image:loc>
       <image:title>P2P Connect Four</image:title>
+    </image:image>
+  </url>
+
+  <!-- BudgetMaster Project -->
+  <url>
+    <loc>https://with-ai.adegbuyi.me/budgeting/</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://with-ai.adegbuyi.me/og-image-budgeting.png</image:loc>
+      <image:title>BudgetMaster - Comprehensive Budget Tracking</image:title>
     </image:image>
   </url>
 

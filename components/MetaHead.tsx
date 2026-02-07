@@ -10,6 +10,11 @@ export interface MetaHeadProps {
 	canonicalUrl?: string;
 	author?: string;
 	ogType?: string;
+	themeColor?: string;
+	language?: string;
+	robots?: string;
+	structuredData?: object;
+	preconnectUrls?: string[];
 }
 
 /**
@@ -45,26 +50,45 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
 	canonicalUrl = '',
 	author = 'Ademola Adegbuyi',
 	ogType = 'website',
+	themeColor = '#050505',
+	language = 'en',
+	robots = 'index, follow',
+	structuredData,
+	preconnectUrls = [],
 }) => {
 	React.useEffect(() => {
 		// Update document title
 		document.title = title;
+
+		// Update language
+		document.documentElement.lang = language;
 
 		// Update or create meta tags dynamically
 		const updateMetaTag = (
 			name: string,
 			content: string,
 			isProperty = false,
+			isHttpEquiv = false,
 		) => {
-			let element = document.querySelector(
-				isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`,
-			) as HTMLMetaElement | null;
+			if (!content) return;
+
+			const selector = isHttpEquiv
+				? `meta[http-equiv="${name}"]`
+				: isProperty
+					? `meta[property="${name}"]`
+					: `meta[name="${name}"]`;
+
+			let element = document.querySelector(selector) as HTMLMetaElement | null;
 
 			if (!element) {
 				element = document.createElement('meta');
-				isProperty
-					? element.setAttribute('property', name)
-					: element.setAttribute('name', name);
+				if (isHttpEquiv) {
+					element.setAttribute('http-equiv', name);
+				} else if (isProperty) {
+					element.setAttribute('property', name);
+				} else {
+					element.setAttribute('name', name);
+				}
 				document.head.appendChild(element);
 			}
 			element.content = content;
@@ -73,6 +97,8 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
 		updateMetaTag('description', description);
 		updateMetaTag('keywords', keywords);
 		updateMetaTag('author', author);
+		updateMetaTag('theme-color', themeColor);
+		updateMetaTag('robots', robots);
 
 		// Open Graph
 		updateMetaTag('og:type', ogType, true);
@@ -80,6 +106,7 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
 		updateMetaTag('og:description', description, true);
 		if (ogImage) updateMetaTag('og:image', ogImage, true);
 		if (ogImageAlt) updateMetaTag('og:image:alt', ogImageAlt, true);
+		if (canonicalUrl) updateMetaTag('og:url', canonicalUrl, true);
 
 		// Twitter Card
 		updateMetaTag('twitter:card', 'summary_large_image');
@@ -100,6 +127,32 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
 			}
 			canonical.href = canonicalUrl;
 		}
+
+		// Add preconnect links
+		preconnectUrls.forEach((url) => {
+			if (!document.querySelector(`link[href="${url}"][rel="preconnect"]`)) {
+				const link = document.createElement('link');
+				link.rel = 'preconnect';
+				link.href = url;
+				document.head.appendChild(link);
+			}
+		});
+
+		// Add structured data
+		if (structuredData) {
+			const existingScript = document.querySelector(
+				'script[type="application/ld+json"]#dynamic-structured-data',
+			);
+			if (existingScript) {
+				existingScript.remove();
+			}
+
+			const script = document.createElement('script');
+			script.type = 'application/ld+json';
+			script.id = 'dynamic-structured-data';
+			script.textContent = JSON.stringify(structuredData);
+			document.head.appendChild(script);
+		}
 	}, [
 		title,
 		description,
@@ -110,6 +163,11 @@ export const MetaHead: React.FC<MetaHeadProps> = ({
 		canonicalUrl,
 		author,
 		ogType,
+		themeColor,
+		language,
+		robots,
+		structuredData,
+		preconnectUrls,
 	]);
 
 	return null; // This component only manages meta tags

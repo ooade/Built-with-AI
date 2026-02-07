@@ -1,74 +1,63 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="A digital playground for games, utilities, and raw ideas. This is where I test the limits of what's possible with AI."
-		/>
-		<meta
-			name="keywords"
-			content="AI projects, games, portfolio, Phaser, WebRTC, interactive"
-		/>
-		<meta name="author" content="Ademola Adegbuyi" />
-		<meta name="theme-color" content="#050505" />
-		<meta name="robots" content="index, follow" />
 
-		<!-- Open Graph Tags -->
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:title"
-			content="Built with AI - Interactive Games & Projects Portfolio"
-		/>
-		<meta
-			property="og:description"
-			content="A digital playground for games, utilities, and raw ideas. This is where I test the limits of what's possible with AI."
-		/>
-		<meta property="og:url" content="https://with-ai.adegbuyi.me" />
-		<meta
-			property="og:image"
-			content="https://with-ai.adegbuyi.me/og-image.png"
-		/>
-		<meta property="og:image:alt" content="Built with AI Portfolio" />
-		<meta property="og:site_name" content="Built with AI" />
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description"
+		content="A digital playground for games, utilities, and raw ideas. This is where I test the limits of what's possible with AI." />
+	<meta name="keywords" content="AI projects, games, portfolio, Phaser, WebRTC, interactive" />
+	<meta name="author" content="Ademola Adegbuyi" />
+	<meta name="theme-color" content="#050505" />
+	<meta name="robots" content="index, follow" />
 
-		<!-- Twitter Card Tags -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta
-			name="twitter:title"
-			content="Built with AI - Interactive Games Portfolio"
-		/>
-		<meta
-			name="twitter:description"
-			content="A digital playground for games, utilities, and raw ideas. This is where I test the limits of what's possible with AI."
-		/>
-		<meta
-			name="twitter:image"
-			content="https://with-ai.adegbuyi.me/og-image.png"
-		/>
-		<meta name="twitter:creator" content="@_ooade" />
+	<!-- Open Graph Tags -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Built with AI - Interactive Games & Projects Portfolio" />
+	<meta property="og:description"
+		content="A digital playground for games, utilities, and raw ideas. This is where I test the limits of what's possible with AI." />
+	<meta property="og:url" content="https://with-ai.adegbuyi.me" />
+	<meta property="og:image" content="https://with-ai.adegbuyi.me/og-image.png" />
+	<meta property="og:image:alt" content="Built with AI Portfolio" />
+	<meta property="og:site_name" content="Built with AI" />
 
-		<!-- Canonical URL -->
-		<link rel="canonical" href="https://with-ai.adegbuyi.me" />
+	<!-- Twitter Card Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Built with AI - Interactive Games Portfolio" />
+	<meta name="twitter:description"
+		content="A digital playground for games, utilities, and raw ideas. This is where I test the limits of what's possible with AI." />
+	<meta name="twitter:image" content="https://with-ai.adegbuyi.me/og-image.png" />
+	<meta name="twitter:creator" content="@_ooade" />
 
-		<!-- Favicon & App Icons -->
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%23818cf8'>AI</text></svg>"
-		/>
-		<link
-			rel="apple-touch-icon"
-			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23050505' width='180' height='180'/><text x='50%' y='50%' font-size='100' font-weight='bold' fill='%23818cf8' text-anchor='middle' dy='.3em'>AI</text></svg>"
-		/>
+	<!-- Canonical URL -->
+	<link rel="canonical" href="https://with-ai.adegbuyi.me" />
 
-		<!-- Preconnect to External Resources -->
-		<link rel="preconnect" href="https://cdn.tailwindcss.com" />
-		<link rel="preconnect" href="https://esm.sh" />
+	<!-- Favicon & App Icons -->
+	<link rel="icon" type="image/svg+xml"
+		href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%23818cf8'>AI</text></svg>" />
+	<link rel="apple-touch-icon"
+		href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23050505' width='180' height='180'/><text x='50%' y='50%' font-size='100' font-weight='bold' fill='%23818cf8' text-anchor='middle' dy='.3em'>AI</text></svg>" />
 
-		<!-- JSON-LD Structured Data -->
-		<script type="application/ld+json">
+	<!-- Preconnect to External Resources -->
+	<link rel="preconnect" href="https://cdn.tailwindcss.com" />
+	<link rel="preconnect" href="https://esm.sh" />
+	<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+	<!-- Preload critical resources -->
+	<link rel="preload" href="https://cdn.tailwindcss.com" as="script" />
+
+	<!-- Security headers -->
+	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+	<!-- Additional SEO meta tags -->
+	<meta name="language" content="English" />
+	<meta name="revisit-after" content="30 days" />
+	<meta name="distribution" content="global" />
+	<meta name="rating" content="general" />
+
+	<!-- JSON-LD Structured Data -->
+	<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
 				"@type": "Person",
@@ -87,7 +76,7 @@
 			}
 		</script>
 
-		<script type="application/ld+json">
+	<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
 				"@type": "CollectionPage",
@@ -96,64 +85,132 @@
 				"url": "https://with-ai.adegbuyi.me",
 				"isPartOf": {
 					"@type": "WebSite",
-					"name": "Built with AI"
+					"name": "Built with AI",
+					"url": "https://with-ai.adegbuyi.me"
+				},
+				"mainEntity": {
+					"@type": "ItemList",
+					"name": "AI-Generated Projects",
+					"itemListElement": [
+						{
+							"@type": "VideoGame",
+							"name": "Flappy Bird",
+							"url": "https://with-ai.adegbuyi.me/flappy-bird/",
+							"description": "A classic Flappy Bird clone built with Phaser 3 and React",
+							"gameLocation": "https://with-ai.adegbuyi.me/flappy-bird/",
+							"genre": "Casual Game",
+							"playMode": "SinglePlayer"
+						},
+						{
+							"@type": "VideoGame",
+							"name": "Snake on Windows XP",
+							"url": "https://with-ai.adegbuyi.me/snake-on-windows-xp/",
+							"description": "A nostalgic Snake game with a Windows XP aesthetic",
+							"gameLocation": "https://with-ai.adegbuyi.me/snake-on-windows-xp/",
+							"genre": "Classic Game",
+							"playMode": "SinglePlayer"
+						},
+						{
+							"@type": "VideoGame",
+							"name": "P2P Connect Four",
+							"url": "https://with-ai.adegbuyi.me/connect-four/",
+							"description": "A peer-to-peer Connect Four game for real-time multiplayer",
+							"gameLocation": "https://with-ai.adegbuyi.me/connect-four/",
+							"genre": "Strategy Game",
+							"playMode": "MultiPlayer"
+						},
+						{
+							"@type": "SoftwareApplication",
+							"name": "BudgetMaster",
+							"url": "https://with-ai.adegbuyi.me/budgeting/",
+							"description": "A comprehensive, offline-first budget tracking application",
+							"applicationCategory": "FinanceApplication",
+							"operatingSystem": "Web Browser"
+						},
+						{
+							"@type": "SoftwareApplication",
+							"name": "AI Transcriber",
+							"url": "https://github.com/ooade/AI-Transcriber",
+							"description": "An intelligent transcription and analysis tool using OpenAI's Whisper",
+							"applicationCategory": "ProductivityApplication",
+							"operatingSystem": "Cross-platform"
+						}
+					]
 				}
 			}
 		</script>
 
-		<title>Built with AI - Interactive Games & Projects Portfolio</title>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = {
-				theme: {
-					extend: {
-						fontFamily: {
-							sans: ['Inter', 'system-ui', 'sans-serif'],
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Home",
+				"item": "https://with-ai.adegbuyi.me"
+			}
+		]
+	}
+	</script>
+
+	<title>Built with AI - Interactive Games & Projects Portfolio</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					fontFamily: {
+						sans: ['Inter', 'system-ui', 'sans-serif'],
+					},
+					animation: {
+						blob: 'blob 10s infinite',
+						'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+					},
+					keyframes: {
+						blob: {
+							'0%': { transform: 'translate(0px, 0px) scale(1)' },
+							'33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+							'66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+							'100%': { transform: 'translate(0px, 0px) scale(1)' },
 						},
-						animation: {
-							blob: 'blob 10s infinite',
-							'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-						},
-						keyframes: {
-							blob: {
-								'0%': { transform: 'translate(0px, 0px) scale(1)' },
-								'33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-								'66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-								'100%': { transform: 'translate(0px, 0px) scale(1)' },
-							},
-							fadeInUp: {
-								'0%': { opacity: '0', transform: 'translateY(20px)' },
-								'100%': { opacity: '1', transform: 'translateY(0)' },
-							},
+						fadeInUp: {
+							'0%': { opacity: '0', transform: 'translateY(20px)' },
+							'100%': { opacity: '1', transform: 'translateY(0)' },
 						},
 					},
 				},
-			};
-		</script>
-		<style>
-			/* Custom scrollbar for Webkit */
-			::-webkit-scrollbar {
-				width: 8px;
-			}
-			::-webkit-scrollbar-track {
-				background: #0a0a0a;
-			}
-			::-webkit-scrollbar-thumb {
-				background: #262626;
-				border-radius: 4px;
-			}
-			::-webkit-scrollbar-thumb:hover {
-				background: #404040;
-			}
+			},
+		};
+	</script>
+	<style>
+		/* Custom scrollbar for Webkit */
+		::-webkit-scrollbar {
+			width: 8px;
+		}
 
-			body {
-				background-color: #050505;
-				color: #e5e5e5;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-			}
-		</style>
-		<script type="importmap">
+		::-webkit-scrollbar-track {
+			background: #0a0a0a;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: #262626;
+			border-radius: 4px;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: #404040;
+		}
+
+		body {
+			background-color: #050505;
+			color: #e5e5e5;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	</style>
+	<script type="importmap">
 			{
 				"imports": {
 					"react-dom/": "https://esm.sh/react-dom@^19.2.3/",
@@ -162,10 +219,12 @@
 				}
 			}
 		</script>
-		<link rel="stylesheet" href="/index.css" />
-	</head>
-	<body>
-		<div id="root"></div>
-		<script type="module" src="/index.tsx"></script>
-	</body>
+	<link rel="stylesheet" href="/index.css" />
+</head>
+
+<body>
+	<div id="root"></div>
+	<script type="module" src="/index.tsx"></script>
+</body>
+
 </html>

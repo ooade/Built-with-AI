@@ -5,6 +5,47 @@
   publish = "dist"
   command = "echo 'Building...' && npm run build && npm run build:projects"
 
+# SEO and Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://esm.sh https://fonts.googleapis.com https://fonts.gstatic.com data:; img-src 'self' data: https:;"
+
+# Caching headers for static assets
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# SEO-friendly redirects
+
+# SEO-friendly redirects
+
+# Project specific redirects
 [[redirects]]
   from = "/flappy-bird/*"
   to = "/flappy-bird/index.html"
@@ -20,10 +61,27 @@
   to = "/p2p-connect-four/index.html"
   status = 200
 
+# Alternative URLs for Connect Four
+[[redirects]]
+  from = "/p2p-connect-four/*"
+  to = "/p2p-connect-four/index.html"
+  status = 200
+
 [[redirects]]
   from = "/budgeting/*"
   to = "/budgeting/index.html"
   status = 200
+
+# Alternative budgeting URLs
+[[redirects]]
+  from = "/budget/*"
+  to = "/budgeting/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/budget-master/*"
+  to = "/budgeting/index.html"
+  status = 301
 
 # Root fallback
 [[redirects]]
