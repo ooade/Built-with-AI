@@ -1,6 +1,5 @@
 import React from 'react';
 import { Project } from '../types';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface ProjectCardProps {
 	project: Project;
@@ -8,47 +7,69 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
-	const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 });
-
-	const CardWrapper = project.link ? 'a' : 'div';
-	const linkProps = project.link ? { href: project.link } : {};
-
 	return (
-		<CardWrapper
-			ref={elementRef}
-			{...linkProps}
-			className={`
-        group relative flex flex-col p-6 rounded-xl border border-white/5 bg-neutral-900/40 backdrop-blur-sm
-        transition-all duration-700 ease-out h-full cursor-pointer
-        hover:border-white/20 hover:bg-neutral-900/60 hover:-translate-y-1
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-      `}
-			style={{ transitionDelay: `${(index % 9) * 100}ms` }}
+		<a
+			href={project.link}
+			className="group block relative w-full py-12 md:py-20 border-b border-white/5 hover:bg-white/[0.02] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-transform"
 		>
-			{/* Subtle Glow Effect on Hover */}
-			<div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-opacity duration-500 group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 group-hover:opacity-100 rounded-xl" />
-
-			<div className="flex justify-between items-start mb-4">
-				<h3 className="text-xl font-semibold text-neutral-100 tracking-tight group-hover:text-white transition-colors">
-					{project.title}
-				</h3>
-				<span className="text-xs font-mono uppercase tracking-wider text-neutral-500 border border-neutral-800 px-2 py-1 rounded bg-neutral-950/50">
-					{project.tags[0]}
-				</span>
-			</div>
-
-			<p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-grow">
-				{project.description}
-			</p>
-
-			<div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
-				<div className="opacity-0 transform -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-					<span className="text-xs font-medium text-white">
-						View Project &rarr;
+			<div className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 md:gap-8 px-2 md:px-4">
+				{/* Leading Metadata */}
+				<div className="flex items-center gap-6 md:w-1/5 md:self-center">
+					<span className="text-[10px] font-mono text-neutral-600 group-hover:text-indigo-500 transition-colors duration-500">
+						{String(index + 1).padStart(2, '0')}
+					</span>
+					<span className="text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-600 group-hover:text-white transition-colors duration-500">
+						{project.tags[0]}
 					</span>
 				</div>
+
+				{/* Massive Title */}
+				<div className="flex-1 overflow-hidden relative z-10">
+					<h3 className="text-4xl md:text-6xl lg:text-7xl font-bold text-neutral-300 tracking-tighter group-hover:text-white group-hover:translate-x-4 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+						{project.title}
+					</h3>
+				</div>
+
+				{/* Floating Description and Secondary Tag */}
+				<div className="md:w-1/3 flex flex-col md:items-end gap-3 text-left md:text-right mt-4 md:mt-0">
+					<p className="text-sm text-neutral-500 max-w-xs group-hover:text-neutral-300 transition-colors duration-500 leading-relaxed">
+						{project.description}
+					</p>
+					<div className="flex gap-3 flex-wrap justify-end">
+						{project.tags.slice(1).map((tag) => (
+							<span
+								key={tag}
+								className="text-[9px] font-bold uppercase tracking-widest text-neutral-800 group-hover:text-indigo-400 transition-colors"
+							>
+								#{tag}
+							</span>
+						))}
+					</div>
+				</div>
+
+				{/* External Indicator */}
+				<div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500 ease-out hidden md:block">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="32"
+						height="32"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="1"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className="text-white"
+					>
+						<line x1="7" y1="17" x2="17" y2="7"></line>
+						<polyline points="7 7 17 7 17 17"></polyline>
+					</svg>
+				</div>
 			</div>
-		</CardWrapper>
+
+			{/* Animated Underline Progress */}
+			<div className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-50" />
+		</a>
 	);
 };
 

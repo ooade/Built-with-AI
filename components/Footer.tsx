@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
 						rel="noopener noreferrer"
 						className="hover:text-white transition-colors"
 					>
-						My boring personal website
+						My personal website
 					</a>
 					<a
 						href={SOCIAL_LINKS.X}

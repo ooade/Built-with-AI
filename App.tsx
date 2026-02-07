@@ -86,9 +86,16 @@ const App: React.FC = () => {
 						</div>
 
 						{/* Projects Grid */}
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+						<div className="flex flex-col border-t border-white/10">
 							{visibleProjects.map((project, index) => (
-								<ProjectCard key={project.id} project={project} index={index} />
+								<div
+									key={project.id}
+									className="project-list-item relative overflow-hidden"
+								>
+									<div className="item-inner will-change-transform">
+										<ProjectCard project={project} index={index} />
+									</div>
+								</div>
 							))}
 						</div>
 
