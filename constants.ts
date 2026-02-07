@@ -25,6 +25,14 @@ export const PROJECTS: Project[] = [
 		tags: ['Game', 'P2P'],
 		link: '/connect-four/',
 	},
+	{
+		id: 'budgeting',
+		title: 'BudgetMaster',
+		description:
+			'A comprehensive, offline-first budget tracking application with PDF import simulation, robust data visualization, and expense management.',
+		tags: ['Utility', 'Finance'],
+		link: '/budgeting/',
+	},
 ];
 
 export const SOCIAL_LINKS = {

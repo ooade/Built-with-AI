@@ -20,6 +20,11 @@
   to = "/p2p-connect-four/index.html"
   status = 200
 
+[[redirects]]
+  from = "/budgeting/*"
+  to = "/budgeting/index.html"
+  status = 200
+
 # Root fallback
 [[redirects]]
   from = "/"

@@ -10,7 +10,8 @@
 		"build:flappy-bird": "cd projects/flappy-bird && yarn && yarn build",
 		"build:snake-on-windows-xp": "cd projects/snake-on-windows-xp && yarn && yarn build",
 		"build:connect-four": "cd projects/p2p-connect-four && yarn && yarn build",
-		"build:projects": "yarn build:flappy-bird && yarn build:snake-on-windows-xp && yarn build:connect-four"
+		"build:budgeting": "cd projects/budgeting && yarn && yarn build",
+		"build:projects": "yarn build:flappy-bird && yarn build:snake-on-windows-xp && yarn build:connect-four && yarn build:budgeting"
 	},
 	"dependencies": {
 		"react-dom": "^19.2.3",

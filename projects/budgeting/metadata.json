@@ -1,0 +1,5 @@
+{
+  "name": "BudgetMaster - Claude gen",
+  "description": "A comprehensive, offline-first budget tracking application with PDF import simulation, robust data visualization, and expense management.",
+  "requestFramePermissions": []
+}

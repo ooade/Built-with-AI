@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BudgetMaster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Manrope', 'sans-serif'],
+            },
+            colors: {
+              gray: {
+                25: '#FCFCFD',
+                50: '#F9FAFB',
+                100: '#F2F4F7',
+                200: '#EAECF0',
+                300: '#D0D5DD',
+                400: '#98A2B3',
+                500: '#667085',
+                600: '#475467',
+                700: '#344054',
+                800: '#1D2939',
+                900: '#101828',
+                950: '#0C111D',
+              },
+              primary: {
+                25: '#F6FEF9',
+                50: '#ECFDF3',
+                100: '#D1FADF',
+                200: '#A6F4C5',
+                300: '#6CE9A6',
+                400: '#32D583',
+                500: '#12B76A',
+                600: '#039855',
+                700: '#027A48',
+                800: '#05603A',
+                900: '#054F31',
+                950: '#022C1B',
+              }
+            },
+            boxShadow: {
+              'xs': '0 1px 2px rgba(16, 24, 40, 0.05)',
+              'sm': '0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06)',
+              'md': '0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06)',
+              'lg': '0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)',
+              'xl': '0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03)',
+              '2xl': '0 24px 48px -12px rgba(16, 24, 40, 0.18)',
+              'glow': '0 0 20px rgba(18, 183, 106, 0.3)',
+              'glow-sm': '0 0 10px rgba(18, 183, 106, 0.15)',
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          },
+        },
+        darkMode: 'class',
+      }
+    </script>
+    <style>
+      html {
+        color-scheme: light;
+      }
+      body {
+        font-family: 'Manrope', sans-serif;
+        background-color: #F9FAFB;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D0D5DD;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #98A2B3;
+      }
+      
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+      
+      /* Smooth transitions for all interactive elements */
+      button, a, input, select {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 200ms;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "dexie": "https://esm.sh/dexie@^4.2.1",
+    "date-fns": "https://esm.sh/date-fns@^4.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "dexie-react-hooks": "https://esm.sh/dexie-react-hooks@^4.2.0",
+    "react-hot-toast": "https://esm.sh/react-hot-toast@^2.6.0",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "pdfjs-dist": "https://esm.sh/pdfjs-dist@3.11.174",
+    "pdfjs-dist/": "https://esm.sh/pdfjs-dist@3.11.174/",
+    "xlsx": "https://esm.sh/xlsx@0.18.5",
+    "peerjs": "https://esm.sh/peerjs@1.5.4?bundle-deps"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 text-gray-900 antialiased selection:bg-primary-100 selection:text-primary-900">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
