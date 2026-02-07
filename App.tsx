@@ -6,8 +6,27 @@ import Footer from './components/Footer';
 import { PROJECTS, SOCIAL_LINKS } from './constants';
 import { SectionId } from './types';
 
-const CATEGORIES = ['All', 'Game', 'Utility' /* 'Visual', 'Audio' */];
+const CATEGORIES = ['All', 'Game', 'Utility', 'Audio'];
 const INITIAL_VISIBLE_COUNT = 9;
+type SortOrder = 'newest-first' | 'oldest-first';
+
+const DISPLAY_CONFIG = {
+	sortOrder: 'newest-first',
+} as Record<string, SortOrder>;
+
+const getSortedProjects = (
+	projects: typeof PROJECTS,
+	sortOrder: typeof DISPLAY_CONFIG.sortOrder,
+) => {
+	switch (sortOrder) {
+		case 'newest-first':
+			return [...projects].reverse();
+		case 'oldest-first':
+			return [...projects];
+		default:
+			return [...projects];
+	}
+};
 
 const App: React.FC = () => {
 	const [activeCategory, setActiveCategory] = useState('All');
@@ -19,8 +38,10 @@ const App: React.FC = () => {
 	}, [activeCategory]);
 
 	const filteredProjects = useMemo(() => {
-		if (activeCategory === 'All') return PROJECTS;
-		return PROJECTS.filter((p) => p.tags.includes(activeCategory));
+		const sorted = getSortedProjects(PROJECTS, DISPLAY_CONFIG.sortOrder);
+		return activeCategory === 'All'
+			? sorted
+			: sorted.filter((p) => p.tags.includes(activeCategory));
 	}, [activeCategory]);
 
 	const visibleProjects = filteredProjects.slice(0, visibleCount);

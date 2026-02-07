@@ -33,6 +33,14 @@ export const PROJECTS: Project[] = [
 		tags: ['Utility', 'Finance'],
 		link: '/budgeting/',
 	},
+	{
+		id: 'ai-transcriber',
+		title: 'AI Transcriber',
+		description:
+			"An intelligent transcription and analysis tool that leverages OpenAI's Whisper for speech-to-text conversion, with automatic correction, summarization, and speaker diarization capabilities.",
+		tags: ['Audio'],
+		link: 'https://github.com/ooade/AI-Transcriber',
+	},
 ];
 
 export const SOCIAL_LINKS = {
