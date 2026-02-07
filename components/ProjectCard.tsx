@@ -10,7 +10,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
 	return (
 		<a
 			href={project.link}
-			className="group block relative w-full py-12 md:py-20 border-b border-white/5 hover:bg-white/[0.02] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-transform"
+			className="group block relative w-full py-12 md:py-20 border-b border-white/5 hover:bg-white/[0.02] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
 		>
 			<div className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 md:gap-8 px-2 md:px-4">
 				{/* Leading Metadata */}

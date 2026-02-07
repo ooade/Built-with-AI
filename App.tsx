@@ -113,7 +113,7 @@ const App: React.FC = () => {
 									key={project.id}
 									className="project-list-item relative overflow-hidden"
 								>
-									<div className="item-inner will-change-transform">
+									<div className="item-inner">
 										<ProjectCard project={project} index={index} />
 									</div>
 								</div>
