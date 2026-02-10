@@ -18,6 +18,22 @@ export const PROJECTS: Project[] = [
 		link: '/snake-on-windows-xp/',
 	},
 	{
+		id: 'with-ai',
+		title: 'Built with AI',
+		description:
+			'This very website! Built using React and Tailwind CSS, it showcases a collection of projects that leverage AI technologies.',
+		tags: ['Infospace', 'Web'],
+		link: '/',
+	},
+	{
+		id: 'my-portfolio',
+		title: 'My Portfolio',
+		description:
+			'A personal portfolio website showcasing my projects, skills, and experience. Built with React and Tailwind CSS for a sleek and responsive design.',
+		tags: ['Infospace', 'Web'],
+		link: 'https://ademola.adegbuyi.me',
+	},
+	{
 		id: 'p2p-connect-four',
 		title: 'P2P Connect Four',
 		description:
@@ -40,6 +56,14 @@ export const PROJECTS: Project[] = [
 			"An intelligent transcription and analysis tool that leverages OpenAI's Whisper for speech-to-text conversion, with automatic correction, summarization, and speaker diarization capabilities.",
 		tags: ['Audio'],
 		link: 'https://github.com/ooade/AI-Transcriber',
+	},
+	{
+		id: 'my-referral-code',
+		title: 'My Referral Code',
+		description:
+			'A simple web page that displays my referral code for a popular service, allowing users to easily copy and use it for their own benefit.',
+		tags: ['Utility', 'Referral'],
+		link: 'https://ademola.adegbuyi.me/referrals',
 	},
 ];
 

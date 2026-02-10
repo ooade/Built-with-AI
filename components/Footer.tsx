@@ -8,7 +8,6 @@ const Footer: React.FC = () => {
 				<div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
 					<span>&copy; {new Date().getFullYear()} Ademola Adegbuyi</span>
 					<span className="hidden md:inline text-neutral-800">|</span>
-					<span>AI built this website</span>
 				</div>
 
 				<div className="flex items-center gap-6">

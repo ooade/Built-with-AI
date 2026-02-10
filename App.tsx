@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import { PROJECTS, SOCIAL_LINKS } from './constants';
 import { SectionId } from './types';
 
-const CATEGORIES = ['All', 'Game', 'Utility', 'Audio'];
+const CATEGORIES = ['All', 'Game', 'Utility', 'Audio', 'Infospace'];
 const INITIAL_VISIBLE_COUNT = 9;
 type SortOrder = 'newest-first' | 'oldest-first';
 
