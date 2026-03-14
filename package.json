@@ -17,6 +17,8 @@
 		"preview": "vite preview",
 		"build:projects": "turbo run build",
 		"build:projects:changed": "turbo run build --filter=...[$CACHED_COMMIT_REF]",
+		"build:projects:smart": "if [ -n \"$CACHED_COMMIT_REF\" ]; then echo 'Attempting changed-project build from' \"$CACHED_COMMIT_REF\" && yarn build:projects:changed || (echo 'Changed-project build failed; falling back to full project build.' && yarn build:projects); else echo 'No CACHED_COMMIT_REF; running full project build.' && yarn build:projects; fi",
+		"build:ci": "yarn build && yarn build:projects:smart",
 		"build:all": "yarn build && yarn build:projects"
 	},
 	"dependencies": {

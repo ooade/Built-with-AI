@@ -44,6 +44,8 @@ From repo root:
 - Build root app: `yarn build`
 - Build all embedded apps: `yarn build:projects` (Turbo)
 - Build only changed apps: `yarn build:projects:changed` (requires `CACHED_COMMIT_REF`)
+- Build projects with fallback logic: `yarn build:projects:smart`
+- CI build entrypoint: `yarn build:ci`
 - Build full deploy artifact set: `yarn build:all`
 
 Per embedded app (`projects/<name>/`):
