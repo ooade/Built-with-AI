@@ -3,16 +3,21 @@
 	"private": true,
 	"version": "1.0.0",
 	"type": "module",
+	"packageManager": "yarn@1.22.22",
+	"workspaces": [
+		"projects/flappy-bird",
+		"projects/snake-on-windows-xp",
+		"projects/p2p-connect-four",
+		"projects/budgeting",
+		"projects/flowsketch"
+	],
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"build:flappy-bird": "cd projects/flappy-bird && yarn && yarn build",
-		"build:snake-on-windows-xp": "cd projects/snake-on-windows-xp && yarn && yarn build",
-		"build:connect-four": "cd projects/p2p-connect-four && yarn && yarn build",
-		"build:budgeting": "cd projects/budgeting && yarn && yarn build",
-		"build:flowsketch": "cd projects/flowsketch && yarn && yarn build",
-		"build:projects": "yarn build:flappy-bird && yarn build:snake-on-windows-xp && yarn build:connect-four && yarn build:budgeting && yarn build:flowsketch"
+		"build:projects": "turbo run build",
+		"build:projects:changed": "turbo run build --filter=...[$CACHED_COMMIT_REF]",
+		"build:all": "yarn build && yarn build:projects"
 	},
 	"dependencies": {
 		"react-dom": "^19.2.3",
@@ -21,6 +26,7 @@
 	"devDependencies": {
 		"@types/node": "^22.14.0",
 		"@vitejs/plugin-react": "^5.0.0",
+		"turbo": "^2.5.6",
 		"typescript": "~5.8.2",
 		"vite": "^6.2.0"
 	}

@@ -3,7 +3,7 @@
 
 [build]
   publish = "dist"
-  command = "echo 'Building...' && npm run build && npm run build:projects"
+  command = "echo 'Building root...' && yarn build && if [ -n \"$CACHED_COMMIT_REF\" ]; then echo 'Building changed projects...' && yarn build:projects:changed; else echo 'Building all projects...' && yarn build:projects; fi"
 
 # SEO and Security Headers
 [[headers]]
