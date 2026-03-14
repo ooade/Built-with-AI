@@ -54,18 +54,18 @@ Run from a specific embedded project directory:
 2. Turbo discovers each workspace package with a `build` script.
 3. `yarn build:projects` runs Turbo build tasks in parallel.
 4. Netlify build command in `netlify.toml` does:
-	- `yarn build` for the root site
-	- changed-project build (`yarn build:projects:changed`) when `CACHED_COMMIT_REF` is available
-	- fallback full project build (`yarn build:projects`) otherwise
+   - `yarn build` for the root site
+   - changed-project build (`yarn build:projects:changed`) when `CACHED_COMMIT_REF` is available
+   - fallback full project build (`yarn build:projects`) otherwise
 
 ## Adding a New Internal App
 
 1. Create the app under `projects/<name>/` with a `build` script (`vite build`).
 2. Add the app workspace path to root `package.json` `workspaces` array.
 3. Configure app `vite.config.ts`:
-	- `base: '/<route>/'`
-	- `build.outDir: '../../dist/<output-folder>'`
-	- `build.emptyOutDir: true`
+   - `base: '/<route>/'`
+   - `build.outDir: '../../dist/<output-folder>'`
+   - `build.emptyOutDir: true`
 4. Add an entry to root `constants.ts` (`id`, `title`, `description`, `tags`, `link`).
 5. Add/update redirect rules in `netlify.toml` for the new route.
 6. If needed, add a category in root `App.tsx` for new tags.
@@ -76,8 +76,8 @@ Run from a specific embedded project directory:
 2. Verify each internal route maps to an existing `dist/<app>/index.html` output.
 3. Confirm new/edited metadata links in `constants.ts` resolve correctly.
 4. If CI behavior changed, verify both:
-	- `yarn build:projects:changed`
-	- `yarn build:projects`
+   - `yarn build:projects:changed`
+   - `yarn build:projects`
 
 ## Consistency Rules
 
