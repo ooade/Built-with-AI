@@ -65,6 +65,14 @@ export const PROJECTS: Project[] = [
 		tags: ['Utility', 'Referral'],
 		link: 'https://ademola.adegbuyi.me/referrals',
 	},
+	{
+		id: 'flowsketch',
+		title: 'FlowSketch',
+		description:
+			'Convert feature ideas and RFCs into clean system and user diagrams instantly.',
+		tags: ['Utility'],
+		link: '/flowsketch/',
+	},
 ];
 
 export const SOCIAL_LINKS = {

@@ -72,6 +72,11 @@
   to = "/budgeting/index.html"
   status = 200
 
+[[redirects]]
+  from = "/flowsketch/*"
+  to = "/flowsketch/index.html"
+  status = 200
+
 # Alternative budgeting URLs
 [[redirects]]
   from = "/budget/*"
